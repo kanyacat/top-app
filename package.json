@@ -10,6 +10,7 @@
     "stylelint": "stylelint \"**/*.css\" --fix"
   },
   "dependencies": {
+    "@svgr/webpack": "^8.1.0",
     "classnames": "^2.3.2",
     "next": "14.0.4",
     "react": "^18",

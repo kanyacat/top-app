@@ -9,10 +9,12 @@ export default function Home(): JSX.Element {
 				<Htag tag={'h1'}>Текст</Htag>
 				<Htag tag={'h2'}>Текст</Htag>
 				<Htag tag={'h3'}>Текст</Htag>
-				<Button appearance={'primary'} className='fdsf'>
+				<Button appearance={'primary'} arrow={'right'} className='fdsf'>
 					жми
 				</Button>
-				<Button appearance={'ghost'}>жми</Button>
+				<Button appearance={'ghost'} arrow={'down'}>
+					жми
+				</Button>
 			</div>
 		</main>
 	)

@@ -30,7 +30,26 @@
 	border: 1px solid var(--gray-light);
 }
 
+.ghost svg {
+	transition: fill 0.2s ease-in-out;
+}
+
 .ghost:hover {
 	color: var(--white);
 	background-color: var(--primary);
+}
+
+.arrow {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.down {
+	transform: rotate(90deg);
+	transition: transform 0.2s ease-in-out;
+}
+
+.primary svg,
+.ghost:hover svg {
+	fill: var(--white);
 }
