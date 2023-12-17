@@ -1,10 +1,16 @@
+'use client' // This is a client component 👈🏽
+
 import styles from './page.module.css'
 import { Htag } from '@/components/Htag/Htag'
 import { Button } from '@/components/Button/Button'
 import { Ptag } from '@/components/Ptag/Ptag'
 import { Tag } from '@/components/Tag/Tag'
+import { Rating } from '@/components/Rating/Rating'
+import { useState } from 'react'
 
 export default function Home(): JSX.Element {
+	const [rating, setRating] = useState<number>(3)
+
 	return (
 		<main>
 			<div className={styles.root}>
@@ -56,6 +62,7 @@ export default function Home(): JSX.Element {
 				<Tag size={'m'} color={'primary'} href={'/meow'}>
 					meow!
 				</Tag>
+				<Rating rating={rating} isEditable setRating={setRating} />
 			</div>
 		</main>
 	)
