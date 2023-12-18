@@ -7,12 +7,13 @@ import { Ptag } from '@/components/Ptag/Ptag'
 import { Tag } from '@/components/Tag/Tag'
 import { Rating } from '@/components/Rating/Rating'
 import { useState } from 'react'
+import { withLayout } from '@/layout/Layout'
 
-export default function Home(): JSX.Element {
+function Home(): JSX.Element {
 	const [rating, setRating] = useState<number>(3)
 
 	return (
-		<main>
+		<>
 			<div className={styles.root}>
 				<Htag tag={'h1'}>Текст</Htag>
 				<Htag tag={'h2'}>Текст</Htag>
@@ -64,6 +65,8 @@ export default function Home(): JSX.Element {
 				</Tag>
 				<Rating rating={rating} isEditable setRating={setRating} />
 			</div>
-		</main>
+		</>
 	)
 }
+
+export default withLayout(Home)
