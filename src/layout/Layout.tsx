@@ -3,17 +3,16 @@ import { Sidebar } from '@/layout/Sidebar/Sidebar'
 import { Footer } from '@/layout/Footer/Footer'
 import { Header } from '@/layout/Header/Header'
 import { FunctionComponent } from 'react'
+import styles from './Layout.module.css'
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
 	return (
-		<>
-			<Header />
-			<main>
-				<Sidebar />
-				<div>{children}</div>
-			</main>
-			<Footer />
-		</>
+		<div className={styles.wrapper}>
+			<Header className={styles.header} />
+			<Sidebar className={styles.sidebar} />
+			<div className={styles.body}>{children}</div>
+			<Footer className={styles.footer} />
+		</div>
 	)
 }
 
