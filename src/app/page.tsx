@@ -1,17 +1,15 @@
-'use client' // This is a client component 👈🏽
-
 import styles from './page.module.css'
 import { Htag } from '@/components/Htag/Htag'
 import { Button } from '@/components/Button/Button'
 import { Ptag } from '@/components/Ptag/Ptag'
 import { Tag } from '@/components/Tag/Tag'
-import { Rating } from '@/components/Rating/Rating'
-import { useState } from 'react'
 import { withLayout } from '@/layout/Layout'
+import axios from 'axios'
+import { MenuItem } from '../../interfaces/menu.interface'
 
-function Home(): JSX.Element {
-	const [rating, setRating] = useState<number>(3)
-
+async function Home() {
+	// const [rating, setRating] = useState<number>(3)
+	const menu = await getData()
 	return (
 		<>
 			<div className={styles.root}>
@@ -63,10 +61,35 @@ function Home(): JSX.Element {
 				<Tag size={'m'} color={'primary'} href={'/meow'}>
 					meow!
 				</Tag>
-				<Rating rating={rating} isEditable setRating={setRating} />
+				{/*<Rating rating={rating} isEditable setRating={setRating} />*/}
 			</div>
+			<ul>
+				{menu ? (
+					menu.map(m => (
+						<li key={m._id.secondCategory}>{m._id.secondCategory}</li>
+					))
+				) : (
+					<></>
+				)}
+			</ul>
 		</>
 	)
 }
 
 export default withLayout(Home)
+
+export async function getData() {
+	const firstCategory = 0
+
+	const res = await axios.post<MenuItem[]>(
+		process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/find',
+		{ firstCategory }
+	)
+
+	return res.data
+}
+
+interface HomeProps extends Record<string, unknown> {
+	menu: MenuItem[]
+	firstCategory: number
+}
