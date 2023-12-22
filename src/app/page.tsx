@@ -9,7 +9,7 @@ import { MenuItem } from '../../interfaces/menu.interface'
 
 async function Home() {
 	// const [rating, setRating] = useState<number>(3)
-	const menu = await getData()
+	const { menu, firstCategory }: HomeProps = await getData()
 	return (
 		<>
 			<div className={styles.root}>
@@ -86,7 +86,13 @@ export async function getData() {
 		{ firstCategory }
 	)
 
-	return res.data
+	const paths = res.data.flatMap(m => m.pages.map(p => '/courses/' + p.alias))
+	console.log(paths)
+
+	return {
+		menu: res.data,
+		firstCategory
+	}
 }
 
 interface HomeProps extends Record<string, unknown> {
