@@ -14,7 +14,6 @@ async function Course({ params }) {
 		params
 	)
 
-	console.log(menu, firstCategory, page, products)
 	return <div>{products.length}</div>
 }
 

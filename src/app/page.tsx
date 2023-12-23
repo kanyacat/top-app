@@ -4,12 +4,9 @@ import { Button } from '@/components/Button/Button'
 import { Ptag } from '@/components/Ptag/Ptag'
 import { Tag } from '@/components/Tag/Tag'
 import { withLayout } from '@/layout/Layout'
-import axios from 'axios'
-import { MenuItem } from '../../interfaces/menu.interface'
 
 async function Home() {
 	// const [rating, setRating] = useState<number>(3)
-	const { menu, firstCategory }: HomeProps = await getData()
 	return (
 		<>
 			<div className={styles.root}>
@@ -63,39 +60,8 @@ async function Home() {
 				</Tag>
 				{/*<Rating rating={rating} isEditable setRating={setRating} />*/}
 			</div>
-			<ul>
-				{menu ? (
-					menu.map(m => (
-						<li key={m._id.secondCategory}>{m._id.secondCategory}</li>
-					))
-				) : (
-					<></>
-				)}
-			</ul>
 		</>
 	)
 }
 
 export default withLayout(Home)
-
-export async function getData() {
-	const firstCategory = 0
-
-	const res = await axios.post<MenuItem[]>(
-		process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/find',
-		{ firstCategory }
-	)
-
-	const paths = res.data.flatMap(m => m.pages.map(p => '/courses/' + p.alias))
-	console.log(paths)
-
-	return {
-		menu: res.data,
-		firstCategory
-	}
-}
-
-interface HomeProps extends Record<string, unknown> {
-	menu: MenuItem[]
-	firstCategory: number
-}
