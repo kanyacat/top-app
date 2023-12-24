@@ -32,16 +32,21 @@
 	line-height: 16px;
 }
 
-.secondLevelBlock {
-	margin-top: 13px;
-}
-
 .secondBlock {
 	margin-left: 12px;
 	margin-top: 14px;
 	padding-left: 32px;
 
 	border-left: 1px solid #dfdfdf;
+}
+
+.secondLevelBlock {
+	display: none;
+	margin-top: 13px;
+}
+
+.secondLevelBlockOpened {
+	display: block;
 }
 
 .secondLevelBlockOpened:last-child {

@@ -12,6 +12,8 @@ import SevicesIcon from './icons/services.svg'
 
 import { TopLevelCategory } from '../../../interfaces/page.interface'
 import cn from 'classnames'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 const firstCategory = 0
 
@@ -43,16 +45,34 @@ const firstLevelMenu: FirstLevelMenuItem[] = [
 ]
 
 export const Menu = async () => {
-	// const { menu, setMenu, firstCategory } = useContext(AppContext)
+	const router = useRouter()
+	const path = usePathname()
+	// const [menuState, setMenuState] = useState<MenuItem[]>([])
 
-	const { menu, firstCategory, page }: MenuProps = await getData()
+	// const { setMenu } = useContext(AppContext)
+	let { menu, firstCategory, page }: MenuProps = await getData()
+
+	const setMenu = (newMenu: MenuItem[]) => {
+		return (menu = newMenu)
+	}
+
+	const openSecondLevel = (secondCategory: string) => {
+		setMenu(
+			menu.map(m => {
+				if (m._id.secondCategory === secondCategory) {
+					m.isOpened = !m.isOpened
+				}
+				return m
+			})
+		)
+	}
 
 	const buildFirstLevel = () => {
 		return (
 			<>
 				{firstLevelMenu.map(m => (
 					<div key={m.route}>
-						<a href={`/${m.route}`}>
+						<Link href={`/${m.route}`}>
 							<div
 								className={cn(styles.firstLevel, {
 									[styles.firstLevelActive]: m.id === firstCategory
@@ -61,7 +81,7 @@ export const Menu = async () => {
 								{m.icon}
 								<span>{m.name}</span>
 							</div>
-						</a>
+						</Link>
 						{m.id === firstCategory && buildSecondLevel(m)}
 					</div>
 				))}
@@ -72,35 +92,45 @@ export const Menu = async () => {
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
 		return (
 			<div className={styles.secondBlock}>
-				{menu.map(m => (
-					<div key={m._id.secondCategory}>
-						<div className={styles.secondLevel}>
-							{m._id.secondCategory}
-							<div
-								className={cn(styles.secondLevelBlock, {
-									[styles.secondLevelBlockOpened]: m.isOpened
-								})}
-							>
-								{buildThirdLevel(m.pages, menuItem.route)}
+				{menu.map(m => {
+					{
+						if (m.pages.map(p => p.alias).includes(path.split('/')[2])) {
+							m.isOpened = true
+						}
+					}
+					return (
+						<div
+							key={m._id.secondCategory}
+							onClick={() => openSecondLevel(m._id.secondCategory)}
+						>
+							<div className={styles.secondLevel}>
+								{m._id.secondCategory}
+								<div
+									className={cn(styles.secondLevelBlock, {
+										[styles.secondLevelBlockOpened]: m.isOpened
+									})}
+								>
+									{buildThirdLevel(m.pages, menuItem.route)}
+								</div>
 							</div>
 						</div>
-					</div>
-				))}
+					)
+				})}
 			</div>
 		)
 	}
 
 	const buildThirdLevel = (pages: PageItem[], route: string) => {
 		return pages.map(p => (
-			<a
-				key={p._id}
+			<Link
 				href={`/${route}/${p.alias}`}
+				key={p._id}
 				className={cn(styles.thirdLevel, {
-					[styles.thirdLevelActive]: false
+					[styles.thirdLevelActive]: `/${route}/${p.alias}` === path
 				})}
 			>
 				{p.category}
-			</a>
+			</Link>
 		))
 	}
 
@@ -142,3 +172,5 @@ interface MenuProps extends Record<string, unknown> {
 	menu: MenuItem[]
 	firstCategory: number
 }
+
+export default Menu
