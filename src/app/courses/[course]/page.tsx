@@ -1,5 +1,4 @@
 import React from 'react'
-import { withLayout } from '@/layout/Layout'
 import axios from 'axios'
 import { MenuItem } from '../../../../interfaces/menu.interface'
 import { TopPageModel } from '../../../../interfaces/page.interface'
@@ -9,15 +8,13 @@ import { ProductModel } from '../../../../interfaces/product.interface'
 
 const firstCategory = 0
 
-async function Course({ params }) {
+export default async function Course({ params }) {
 	const { menu, firstCategory, page, products }: CourseProps = await getData(
 		params
 	)
 
 	return <div>{products.length}</div>
 }
-
-export default withLayout(Course)
 
 export const getStaticPaths: () => Promise<{
 	paths: []

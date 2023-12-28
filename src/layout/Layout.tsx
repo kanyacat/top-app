@@ -3,7 +3,7 @@ import { Sidebar } from '@/layout/Sidebar/Sidebar'
 import { Footer } from '@/layout/Footer/Footer'
 import { Header } from '@/layout/Header/Header'
 import { FunctionComponent } from 'react'
-import styles from './Layout.module.css'
+// import styles from '../app/Layout.module.css'
 import { AppContextProvider, IAppContext } from '../../context/app.context'
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {

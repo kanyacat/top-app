@@ -3,9 +3,8 @@ import { Htag } from '@/components/Htag/Htag'
 import { Button } from '@/components/Button/Button'
 import { Ptag } from '@/components/Ptag/Ptag'
 import { Tag } from '@/components/Tag/Tag'
-import { withLayout } from '@/layout/Layout'
 
-async function Home() {
+export default async function Home() {
 	// const [rating, setRating] = useState<number>(3)
 	return (
 		<>
@@ -64,4 +63,4 @@ async function Home() {
 	)
 }
 
-export default withLayout(Home)
+// export default withLayout(Home)
