@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['courses-top.ru']
+		domains: ['[type]-top.ru']
 	},
 	webpack(config) {
 		config.module.rules.push({

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { GetStaticPropsContext, Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 import './globals.css'
 import styles from './Layout.module.css'
@@ -7,6 +7,9 @@ import { Footer } from '@/layout/Footer/Footer'
 import { Sidebar } from '@/layout/Sidebar/Sidebar'
 import axios from 'axios'
 import { MenuItem } from '../../interfaces/menu.interface'
+import { firstLevelMenu } from '@/helpers/helpers'
+import { ParsedUrlQuery } from 'querystring'
+import { notFound } from 'next/navigation'
 
 const font = Noto_Sans({ subsets: ['latin'] })
 
@@ -14,8 +17,6 @@ export const metadata: Metadata = {
 	title: 'Top app',
 	description: 'помогите умоляю'
 }
-
-const firstCategory = 0
 
 export default async function RootLayout({
 	children
@@ -38,15 +39,29 @@ export default async function RootLayout({
 	)
 }
 
-export async function getMenu() {
-	const res = await axios.post<MenuItem[]>(
-		process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/find',
-		{ firstCategory }
-	)
+export async function getMenu(
+	params: GetStaticPropsContext<ParsedUrlQuery> | undefined
+) {
+	let firstCategoryItem
 
-	return {
-		menu: res.data,
-		firstCategory
+	params !== undefined
+		? (firstCategoryItem = firstLevelMenu.find(m => m.route === params.type))
+		: (firstCategoryItem = 0)
+
+	const firstCategory = firstCategoryItem !== 0 ? firstCategoryItem.id : 0
+
+	try {
+		const res = await axios.post<MenuItem[]>(
+			process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/find',
+			{ firstCategory }
+		)
+
+		return {
+			menu: res.data,
+			firstCategory
+		}
+	} catch (err) {
+		notFound()
 	}
 }
 
@@ -54,15 +69,22 @@ export const getStaticPaths: () => Promise<{
 	paths: []
 	fallback: boolean
 }> = async () => {
-	const res = await axios.post<MenuItem[]>(
-		process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/find',
-		{ firstCategory }
-	)
+	let paths: string[] = []
 
-	const paths = res.data.flatMap(m => m.pages.map(p => '/courses/' + p.course))
+	for (const m of firstLevelMenu) {
+		const res = await axios.post<MenuItem[]>(
+			process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
+			{
+				firstCategory: m.id
+			}
+		)
+		paths = paths.concat(
+			res.data.flatMap(s => s.pages.map(p => `/${s.route}/${p.alias}`))
+		)
+	}
 
 	return {
-		paths: [...paths],
+		paths,
 		fallback: true
 	}
 }

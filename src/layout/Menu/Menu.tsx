@@ -6,45 +6,13 @@ import {
 	MenuItem,
 	PageItem
 } from '../../../interfaces/menu.interface'
-import CoursesIcon from './icons/courses.svg'
-import BooksIcon from './icons/books.svg'
-import ProductIcon from './icons/product.svg'
-import SevicesIcon from './icons/services.svg'
-
-import { TopLevelCategory } from '../../../interfaces/page.interface'
 import { usePathname } from 'next/navigation'
 import cn from 'classnames'
 import Link from 'next/link'
 import { useState } from 'react'
+import { firstLevelMenu } from '@/helpers/helpers'
 
 const firstCategory = 0
-
-const firstLevelMenu: FirstLevelMenuItem[] = [
-	{
-		route: 'courses',
-		name: 'Курсы',
-		icon: <CoursesIcon />,
-		id: TopLevelCategory.Courses
-	},
-	{
-		route: 'services',
-		name: 'Сервисы',
-		icon: <SevicesIcon />,
-		id: TopLevelCategory.Services
-	},
-	{
-		route: 'books',
-		name: 'Книги',
-		icon: <BooksIcon />,
-		id: TopLevelCategory.Books
-	},
-	{
-		route: 'products',
-		name: 'Товары',
-		icon: <ProductIcon />,
-		id: TopLevelCategory.Products
-	}
-]
 
 export const Menu = menu => {
 	const path = usePathname()
