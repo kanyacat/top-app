@@ -12,11 +12,9 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { firstLevelMenu } from '@/helpers/helpers'
 
-const firstCategory = 0
-
-export const Menu = menu => {
+export const Menu = ({ menu, firstCategory }: MenuProps) => {
 	const path = usePathname()
-	const [menuState, setMenuState] = useState<MenuItem[]>(menu.menu)
+	const [menuState, setMenuState] = useState<MenuItem[]>(menu)
 
 	const setMenu = (newMenu: MenuItem[]) => {
 		setMenuState(newMenu)
@@ -24,7 +22,7 @@ export const Menu = menu => {
 
 	const openSecondLevel = (secondCategory: string) => {
 		setMenu(
-			menu.menu.map(m => {
+			menu.map(m => {
 				if (m._id.secondCategory === secondCategory) {
 					m.isOpened = !m.isOpened
 				}
@@ -58,7 +56,7 @@ export const Menu = menu => {
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
 		return (
 			<div className={styles.secondBlock}>
-				{menu.menu.map(m => {
+				{menu.map(m => {
 					{
 						if (m.pages.map(p => p.alias).includes(path.split('/')[2])) {
 							m.isOpened = true

@@ -2,9 +2,9 @@ import type { GetStaticPropsContext, Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 import './globals.css'
 import styles from './Layout.module.css'
-import { Header } from '@/layout/Header/Header'
-import { Footer } from '@/layout/Footer/Footer'
-import { Sidebar } from '@/layout/Sidebar/Sidebar'
+import { Header } from '@/components/Header/Header'
+import { Footer } from '@/components/Footer/Footer'
+import { Sidebar } from '@/components/Sidebar/Sidebar'
 import axios from 'axios'
 import { MenuItem } from '../../interfaces/menu.interface'
 import { firstLevelMenu } from '@/helpers/helpers'
@@ -23,14 +23,18 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode
 }): JSX.Element {
-	const { menu } = await getMenu()
+	const { menu, firstCategory } = await getMenu()
 
 	return (
 		<html lang='ru'>
 			<body className={font.className}>
 				<div className={styles.wrapper}>
 					<Header className={styles.header} />
-					<Sidebar className={styles.sidebar} menu={menu} />
+					<Sidebar
+						className={styles.sidebar}
+						menu={menu}
+						firstCategory={firstCategory}
+					/>
 					<div className={styles.body}>{children}</div>
 					<Footer className={styles.footer} />
 				</div>
