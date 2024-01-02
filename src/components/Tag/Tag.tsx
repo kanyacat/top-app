@@ -21,6 +21,7 @@ export const Tag = ({
 				[styles.green]: color == 'green',
 				[styles.primary]: color == 'primary'
 			})}
+			{...props}
 		>
 			{href ? <a href={href}>{children}</a> : <>{children}</>}
 		</div>

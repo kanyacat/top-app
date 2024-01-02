@@ -31,3 +31,10 @@ export const firstLevelMenu: FirstLevelMenuItem[] = [
 		id: TopLevelCategory.Products
 	}
 ]
+
+export const countRegex = (price: number, currency: string = '₽'): string => {
+	return price
+		.toString()
+		.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+		.concat(` ${currency}`)
+}
