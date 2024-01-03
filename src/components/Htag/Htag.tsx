@@ -14,7 +14,7 @@ export const Htag = ({
 		case 'h2':
 			return <h2 className={cn(styles.h2, className)}>{children}</h2>
 		case 'h3':
-			return <h3 children={cn(styles.h3, className)}>{children}</h3>
+			return <h3 className={cn(styles.h3, className)}>{children}</h3>
 		default:
 			return <></>
 	}
