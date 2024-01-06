@@ -3,6 +3,7 @@ import { Htag } from '@/components/Htag/Htag'
 import { Button } from '@/components/Button/Button'
 import { Ptag } from '@/components/Ptag/Ptag'
 import { Tag } from '@/components/Tag/Tag'
+import { Textarea } from '@/components/Textarea/Textarea'
 
 export default async function Home() {
 	// const [rating, setRating] = useState<number>(3)
@@ -58,6 +59,7 @@ export default async function Home() {
 					meow!
 				</Tag>
 				{/*<Rating rating={rating} isEditable setRating={setRating} />*/}
+				<Textarea placeholder={'Текст отзыва'} />
 			</div>
 		</>
 	)

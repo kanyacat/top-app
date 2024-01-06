@@ -11,6 +11,7 @@ import { Advantages } from '@/components/Advantages/Advantages'
 import { Sort } from '@/components/Sort/Sort'
 import { SortEnum } from '@/components/Sort/Sort.props'
 import { sortReducer } from '@/components/Sort/sort.reducer'
+import { Product } from '@/components/Product/Product'
 
 const TopPageComponent = ({
 	page,
@@ -44,7 +45,7 @@ const TopPageComponent = ({
 			</div>
 			<div>
 				{sortedProducts &&
-					sortedProducts.map(p => <div key={p._id}>{p.title}</div>)}
+					sortedProducts.map(p => <Product key={p._id} product={p} />)}
 			</div>
 			<div className={styles.hhTitle}>
 				<Htag tag={'h2'}>Вакансии - {page.category}</Htag>

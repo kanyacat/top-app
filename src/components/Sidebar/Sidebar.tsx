@@ -4,6 +4,7 @@ import Logo from '@/helpers/icons/logo.svg'
 import styles from './Sidebar.module.css'
 import cn from 'classnames'
 import Link from 'next/link'
+import { Search } from '@/components/Search/Search'
 
 export const Sidebar = ({
 	menu,
@@ -16,7 +17,9 @@ export const Sidebar = ({
 			<Link href={'/'}>
 				<Logo className={styles.logo} />
 			</Link>
-			<div>search</div>
+			<div>
+				<Search />
+			</div>
 			<Menu menu={menu} firstCategory={firstCategory} />
 		</div>
 	)
