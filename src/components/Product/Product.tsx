@@ -7,6 +7,11 @@ import { Card } from '@/components/Card/Card'
 import { Rating } from '@/components/Rating/Rating'
 import { Tag } from '@/components/Tag/Tag'
 import { Button } from '@/components/Button/Button'
+import { Htag } from '@/components/Htag/Htag'
+import { countRegex, decOfNum } from '@/helpers/helpers'
+import { Divider } from '@/components/Divider/Divider'
+import { Ptag } from '@/components/Ptag/Ptag'
+import Image from 'next/image'
 
 export const Product = ({
 	product,
@@ -16,14 +21,28 @@ export const Product = ({
 	return (
 		<Card className={cn(className, styles.product, {})} {...props}>
 			<div className={styles.logo}>
-				<img
+				<Image
 					src={'https://courses-top.ru' + product.image}
 					alt={product.title}
+					width={70}
+					height={70}
 				/>
 			</div>
-			<div className={styles.title}>{product.title}</div>
-			<div className={styles.price}>{product.price}</div>
-			<div className={styles.credit}>{product.credit}</div>
+			<Htag tag={'h3'} className={styles.title}>
+				{product.title}
+			</Htag>
+			<div className={styles.price}>
+				{countRegex(product.price)}
+				{product.oldPrice && (
+					<Tag color={'green'} className={styles.oldPrice}>
+						{countRegex(product.price - product.oldPrice)}
+					</Tag>
+				)}
+			</div>
+			<div className={styles.credit}>
+				{countRegex(product.credit)}
+				<span className={styles.month}>/мес</span>
+			</div>
 			<div className={styles.rate}>
 				<Rating rating={product.reviewAvg ?? product.initialRating} />
 			</div>
@@ -35,23 +54,45 @@ export const Product = ({
 				))}
 			</div>
 			<div className={styles.priceTitle}>цена</div>
-			<div className={styles.creditTitle}>кредит</div>
-			<div className={styles.rateTitle}>{product.reviewCount} отзывов</div>
-			<hr className={styles.hr} />
-			<div className={styles.description}>{product.description}</div>
-			<div className={styles.feature}>фичи</div>
-			<div className={styles.advBlock}>
-				<div className={styles.advantages}>
-					Преимущества {product.advantages}
-				</div>
-				<div className={styles.disadvantages}>
-					Недостатки {product.disadvantages}
-				</div>
+			<div className={styles.creditTitle}>в кредит</div>
+			<div className={styles.rateTitle}>
+				{product.reviewCount}{' '}
+				{decOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}{' '}
 			</div>
-			<hr className={styles.hr} />
+			<Divider className={styles.hr} />
+			<Ptag className={styles.description}>{product.description}</Ptag>
+			<div className={styles.feature}>
+				{product.characteristics.map(c => (
+					<div className={styles.characteristics} key={c.name}>
+						<span className={styles.characteristicsName}>{c.name}</span>
+						<span className={styles.characteristicsDots}></span>
+						<span className={styles.characteristicsValue}>{c.value}</span>
+					</div>
+				))}
+			</div>
+			<div className={styles.advBlock}>
+				{product.advantages && (
+					<div className={styles.advantages}>
+						<div className={styles.advTitle}>Преимущества</div>
+						{product.advantages}
+					</div>
+				)}
+
+				{product.disadvantages && (
+					<div className={styles.disadvantages}>
+						<div className={styles.advTitle}>Недостатки</div>
+						{product.disadvantages}
+					</div>
+				)}
+			</div>
+			<Divider className={cn(styles.hr, styles.hr2)} />
 			<div className={styles.actions}>
 				<Button appearance={'primary'}>Узнать подробнее</Button>
-				<Button appearance={'ghost'} arrow={'right'}>
+				<Button
+					appearance={'ghost'}
+					arrow={'right'}
+					className={styles.reviewButton}
+				>
 					Читать отзывы
 				</Button>
 			</div>

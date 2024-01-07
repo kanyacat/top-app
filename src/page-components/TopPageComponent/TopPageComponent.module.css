@@ -5,6 +5,8 @@
 	align-items: baseline;
 	justify-items: left;
 	gap: 20px;
+
+	margin-bottom: 20px;
 }
 
 .hhTitle {
@@ -51,4 +53,10 @@
 
 .ability {
 	margin: 20px 0;
+}
+
+@media screen and (max-width: 930px) {
+	.title {
+		grid-template-columns: auto 1fr;
+	}
 }
