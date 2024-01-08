@@ -3,7 +3,7 @@
 	grid-template-columns:
 		[start] 70px [logoend] 30px [titlestart] calc(50% - 100px)
 		[middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
-	margin-bottom: 30px;
+	margin-top: 30px;
 
 	padding: 30px;
 }
@@ -145,6 +145,17 @@
 	margin-left: 20px;
 }
 
+.closed {
+	overflow: hidden;
+	max-height: 0;
+	padding: 0;
+}
+
+.opened {
+	max-height: auto;
+	padding: 30px;
+}
+
 @media screen and (max-width: 1320px) {
 	.product {
 		grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
@@ -153,7 +164,7 @@
 			'logo . title title title title title'
 			'logo . tags tags tags tags tags'
 			'price price price . credit . rate'
-			'priceTitle priceTitle priceTitle . creditTitle . rateitle'
+			'priceTitle priceTitle priceTitle . creditTitle . rateTitle'
 			'hr hr hr hr hr hr hr'
 			'description description description description description description description'
 			'feature feature feature feature feature feature feature'
