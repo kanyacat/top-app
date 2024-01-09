@@ -14,6 +14,7 @@ import { Ptag } from '@/components/Ptag/Ptag'
 import Image from 'next/image'
 import { useState } from 'react'
 import { Review } from '@/components/Review/Review'
+import { ReviewForm } from '@/components/ReviewForm/ReviewForm'
 
 export const Product = ({
 	product,
@@ -111,11 +112,12 @@ export const Product = ({
 				})}
 			>
 				{product.reviews.map(r => (
-					<>
-						<Review key={r._id} review={r} />
+					<div key={r._id}>
+						<Review review={r} />
 						<Divider />
-					</>
+					</div>
 				))}
+				<ReviewForm productId={product._id} />
 			</Card>
 		</>
 	)
