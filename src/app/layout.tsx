@@ -10,6 +10,7 @@ import { MenuItem } from '../../interfaces/menu.interface'
 import { firstLevelMenu } from '@/helpers/helpers'
 import { ParsedUrlQuery } from 'querystring'
 import { notFound } from 'next/navigation'
+import { API } from '@/helpers/api'
 
 const font = Noto_Sans({ subsets: ['latin'] })
 
@@ -55,10 +56,9 @@ export async function getMenu(
 	const firstCategory = firstCategoryItem !== 0 ? firstCategoryItem.id : 0
 
 	try {
-		const res = await axios.post<MenuItem[]>(
-			process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/find',
-			{ firstCategory }
-		)
+		const res = await axios.post<MenuItem[]>(API.topPage.find, {
+			firstCategory
+		})
 
 		return {
 			menu: res.data,
@@ -76,12 +76,9 @@ export const getStaticPaths: () => Promise<{
 	let paths: string[] = []
 
 	for (const m of firstLevelMenu) {
-		const res = await axios.post<MenuItem[]>(
-			process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
-			{
-				firstCategory: m.id
-			}
-		)
+		const res = await axios.post<MenuItem[]>(API.topPage.find, {
+			firstCategory: m.id
+		})
 		paths = paths.concat(
 			res.data.flatMap(s => s.pages.map(p => `/${s.route}/${p.alias}`))
 		)

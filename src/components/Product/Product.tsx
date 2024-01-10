@@ -12,7 +12,7 @@ import { countRegex, decOfNum } from '@/helpers/helpers'
 import { Divider } from '@/components/Divider/Divider'
 import { Ptag } from '@/components/Ptag/Ptag'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Review } from '@/components/Review/Review'
 import { ReviewForm } from '@/components/ReviewForm/ReviewForm'
 
@@ -23,8 +23,18 @@ export const Product = ({
 }: ProductProps): JSX.Element => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false)
 
+	const reviewRef = useRef<HTMLDivElement>(null)
+
+	const scrollToReview = () => {
+		setIsReviewOpened(true)
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		})
+	}
+
 	return (
-		<>
+		<div className={className} {...props}>
 			<Card className={cn(className, styles.product, {})} {...props}>
 				<div className={styles.logo}>
 					<Image
@@ -62,8 +72,10 @@ export const Product = ({
 				<div className={styles.priceTitle}>цена</div>
 				<div className={styles.creditTitle}>в кредит</div>
 				<div className={styles.rateTitle}>
-					{product.reviewCount}{' '}
-					{decOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}{' '}
+					<a href='#ref' onClick={scrollToReview}>
+						{product.reviewCount}{' '}
+						{decOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+					</a>
 				</div>
 				<Divider className={styles.hr} />
 				<Ptag className={styles.description}>{product.description}</Ptag>
@@ -110,6 +122,7 @@ export const Product = ({
 					[styles.opened]: isReviewOpened,
 					[styles.closed]: !isReviewOpened
 				})}
+				ref={reviewRef}
 			>
 				{product.reviews.map(r => (
 					<div key={r._id}>
@@ -119,6 +132,6 @@ export const Product = ({
 				))}
 				<ReviewForm productId={product._id} />
 			</Card>
-		</>
+		</div>
 	)
 }

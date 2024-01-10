@@ -9,6 +9,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { ProductModel } from '../../../../interfaces/product.interface'
 import { firstLevelMenu } from '@/helpers/helpers'
 import TopPageComponent from '@/page-components/TopPageComponent/TopPageComponent'
+import { API } from '@/helpers/api'
 
 export default async function Course({ params }) {
 	const { firstCategory, page, products }: CourseProps = await getData(params)
@@ -38,17 +39,12 @@ export async function getData(
 		}
 	}
 
-	const page = await axios.get<TopPageModel>(
-		process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/byAlias/' + params.alias
-	)
+	const page = await axios.get<TopPageModel>(API.topPage.byAlias + params.alias)
 
-	const products = await axios.post<ProductModel[]>(
-		process.env.NEXT_PUBLIC_DOMAIN + 'api/product/find',
-		{
-			category: page.data.category,
-			limit: 10
-		}
-	)
+	const products = await axios.post<ProductModel[]>(API.product.find, {
+		category: page.data.category,
+		limit: 10
+	})
 
 	return {
 		firstCategory: firstCategoryItem.id,

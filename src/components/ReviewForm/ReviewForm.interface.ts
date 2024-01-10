@@ -5,3 +5,7 @@ export interface IReviewForm {
 	rating: number
 	lastName: string
 }
+
+export interface IReviewSentResponse {
+	message: string
+}
