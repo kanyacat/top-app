@@ -12,6 +12,8 @@ import { Sort } from '@/components/Sort/Sort'
 import { SortEnum } from '@/components/Sort/Sort.props'
 import { sortReducer } from '@/components/Sort/sort.reducer'
 import { Product } from '@/components/Product/Product'
+import { useScrollY } from '@/helpers/hooks/useScrollY'
+import { Up } from '@/components/Up/Up'
 
 const TopPageComponent = ({
 	page,
@@ -26,12 +28,15 @@ const TopPageComponent = ({
 		}
 	)
 
+	const y = useScrollY()
+
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort })
 	}
 
 	return (
 		<div className={styles.wrapper}>
+			<Up />
 			<div className={styles.title}>
 				<Htag tag={'h1'}>{page.title}</Htag>
 				{products && (
@@ -45,7 +50,7 @@ const TopPageComponent = ({
 			</div>
 			<div>
 				{sortedProducts &&
-					sortedProducts.map(p => <Product key={p._id} product={p} />)}
+					sortedProducts.map(p => <Product layout key={p._id} product={p} />)}
 			</div>
 			<div className={styles.hhTitle}>
 				<Htag tag={'h2'}>Вакансии - {page.category}</Htag>

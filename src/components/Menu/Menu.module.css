@@ -3,7 +3,7 @@
 	grid-template-columns: 24px 1fr;
 	gap: 20px;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 10px;
 
 	font-size: 18px;
 	font-weight: 500;
@@ -21,7 +21,7 @@
 }
 
 .secondLevel {
-	margin-bottom: 10px;
+	margin-top: 10px;
 
 	cursor: pointer;
 	text-transform: uppercase;
@@ -34,27 +34,17 @@
 
 .secondBlock {
 	margin-left: 12px;
-	margin-top: 14px;
 	padding-left: 32px;
 
 	border-left: 1px solid #dfdfdf;
 }
 
 .secondLevelBlock {
-	display: none;
-	margin-top: 13px;
-}
-
-.secondLevelBlockOpened {
-	display: block;
-}
-
-.secondLevelBlockOpened:last-child {
-	margin-bottom: 20px;
+	overflow: hidden;
+	margin-top: 5px;
 }
 
 .thirdLevel {
-	margin-bottom: 10px;
 	cursor: pointer;
 
 	display: block;

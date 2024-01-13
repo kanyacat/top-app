@@ -11,10 +11,30 @@ import cn from 'classnames'
 import Link from 'next/link'
 import { useState } from 'react'
 import { firstLevelMenu } from '@/helpers/helpers'
+import { motion } from 'framer-motion'
 
 export const Menu = ({ menu, firstCategory }: MenuProps) => {
 	const path = usePathname()
 	const [menuState, setMenuState] = useState<MenuItem[]>(menu)
+
+	const variants = {
+		visible: {
+			// marginBottom: 50,
+			transition: {
+				when: 'beforeChildren',
+				staggerChildren: 0.1
+			}
+		},
+		hidden: { marginBottom: 0 }
+	}
+
+	const variantsChildren = {
+		visible: {
+			opacity: 1,
+			height: 32
+		},
+		hidden: { opacity: 0, height: 0 }
+	}
 
 	const setMenu = (newMenu: MenuItem[]) => {
 		setMenuState(newMenu)
@@ -69,13 +89,15 @@ export const Menu = ({ menu, firstCategory }: MenuProps) => {
 						>
 							<div className={styles.secondLevel}>
 								{m._id.secondCategory}
-								<div
-									className={cn(styles.secondLevelBlock, {
-										[styles.secondLevelBlockOpened]: m.isOpened
-									})}
+								<motion.div
+									layout
+									variants={variants}
+									initial={m.isOpened ? 'visible' : 'hidden'}
+									animate={m.isOpened ? 'visible' : 'hidden'}
+									className={cn(styles.secondLevelBlock)}
 								>
 									{buildThirdLevel(m.pages, menuItem.route)}
-								</div>
+								</motion.div>
 							</div>
 						</div>
 					)
@@ -86,15 +108,16 @@ export const Menu = ({ menu, firstCategory }: MenuProps) => {
 
 	const buildThirdLevel = (pages: PageItem[], route: string) => {
 		return pages.map(p => (
-			<Link
-				href={`/${route}/${p.alias}`}
-				key={p._id}
-				className={cn(styles.thirdLevel, {
-					[styles.thirdLevelActive]: `/${route}/${p.alias}` === path
-				})}
-			>
-				{p.category}
-			</Link>
+			<motion.div key={p._id} variants={variantsChildren}>
+				<Link
+					href={`/${route}/${p.alias}`}
+					className={cn(styles.thirdLevel, {
+						[styles.thirdLevelActive]: `/${route}/${p.alias}` === path
+					})}
+				>
+					{p.category}
+				</Link>
+			</motion.div>
 		))
 	}
 
