@@ -19,7 +19,6 @@ export const Menu = ({ menu, firstCategory }: MenuProps) => {
 
 	const variants = {
 		visible: {
-			// marginBottom: 50,
 			transition: {
 				when: 'beforeChildren',
 				staggerChildren: 0.1

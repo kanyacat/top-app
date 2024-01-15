@@ -30,7 +30,11 @@ export default async function RootLayout({
 		<html lang='ru'>
 			<body className={font.className}>
 				<div className={styles.wrapper}>
-					<Header className={styles.header} />
+					<Header
+						className={styles.header}
+						menu={menu}
+						firstCategory={firstCategory}
+					/>
 					<Sidebar
 						className={styles.sidebar}
 						menu={menu}
