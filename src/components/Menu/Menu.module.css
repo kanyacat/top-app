@@ -29,7 +29,6 @@
 	color: var(--gray-dark);
 	font-size: 12px;
 	font-weight: 300;
-	line-height: 16px;
 }
 
 .secondBlock {
@@ -37,6 +36,8 @@
 	padding-left: 32px;
 
 	border-left: 1px solid #dfdfdf;
+
+	outline-offset: -1px;
 }
 
 .secondLevelBlock {
@@ -53,6 +54,8 @@
 	font-size: 14px;
 	font-weight: 500;
 	text-transform: none;
+
+	outline-offset: -1px;
 }
 
 .thirdLevelActive,

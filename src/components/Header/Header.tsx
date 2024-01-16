@@ -5,10 +5,10 @@ import cn from 'classnames'
 import styles from './Header.module.css'
 import LogoIcon from '@/helpers/icons/logo.svg'
 import { ButtonIcon } from '@/components/ButtonIcon/ButtonIcon'
-import { motion } from 'framer-motion'
-import { Sidebar } from '@/components/Sidebar/Sidebar'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { Sidebar } from '@/components/Sidebar/Sidebar'
+import { motion } from 'framer-motion'
 
 export const Header = ({
 	menu,

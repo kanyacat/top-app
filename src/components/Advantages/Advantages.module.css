@@ -13,6 +13,8 @@
 
 	border-left: 1px solid var(--gray-light);
 	border-top: none;
+
+	height: 100%;
 }
 
 .title {

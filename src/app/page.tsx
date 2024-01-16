@@ -4,6 +4,7 @@ import { Button } from '@/components/Button/Button'
 import { Ptag } from '@/components/Ptag/Ptag'
 import { Tag } from '@/components/Tag/Tag'
 import { Textarea } from '@/components/Textarea/Textarea'
+import AdvantagesIcon from '@/helpers/icons/advantages.svg'
 
 export default async function Home() {
 	// const [rating, setRating] = useState<number>(3)
@@ -60,6 +61,7 @@ export default async function Home() {
 				</Tag>
 				{/*<Rating rating={rating} isEditable setRating={setRating} />*/}
 				<Textarea placeholder={'Текст отзыва'} />
+				<AdvantagesIcon />
 			</div>
 		</>
 	)

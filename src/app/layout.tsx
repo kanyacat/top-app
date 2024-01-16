@@ -11,6 +11,8 @@ import { firstLevelMenu } from '@/helpers/helpers'
 import { ParsedUrlQuery } from 'querystring'
 import { notFound } from 'next/navigation'
 import { API } from '@/helpers/api'
+import cn from 'classnames'
+import { KeyboardEvent } from 'react'
 
 const font = Noto_Sans({ subsets: ['latin'] })
 
@@ -26,10 +28,32 @@ export default async function RootLayout({
 }): JSX.Element {
 	const { menu, firstCategory } = await getMenu()
 
+	// const bodyRef = useRef<HTMLDivElement>(null)
+
+	let displayed: boolean = true
+
+	const skipConentAction = (key: KeyboardEvent) => {
+		if (key.code === 'Space' || key.code === 'Enter') {
+			key.preventDefault()
+			// bodyRef.current?.focus()
+		}
+		displayed = false
+	}
+
 	return (
 		<html lang='ru'>
 			<body className={font.className}>
 				<div className={styles.wrapper}>
+					<a
+						// onFocus={() => (displayed = true)}
+						tabIndex={1}
+						className={cn(styles.skipLink, {
+							[styles.displayed]: displayed
+						})}
+						// onKeyDown={skipContentAction}
+					>
+						Сразу к содержанию
+					</a>
 					<Header
 						className={styles.header}
 						menu={menu}
@@ -40,7 +64,13 @@ export default async function RootLayout({
 						menu={menu}
 						firstCategory={firstCategory}
 					/>
-					<div className={styles.body}>{children}</div>
+					<div
+						className={styles.body}
+						// ref={bodyRef}
+						tabIndex={0}
+					>
+						{children}
+					</div>
 					<Footer className={styles.footer} />
 				</div>
 			</body>
