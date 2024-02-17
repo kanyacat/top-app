@@ -14,11 +14,13 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
 	const router = useRouter()
 	const goToSearch = () => {
 		router.push(`/search?q=${search}`)
+		setSearch('')
 	}
 
 	const handleKeyDown = (e: KeyboardEvent) => {
 		if (e.key === 'Enter') {
 			goToSearch()
+			setSearch('')
 		}
 	}
 

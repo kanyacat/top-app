@@ -10,11 +10,12 @@ import { usePathname } from 'next/navigation'
 import cn from 'classnames'
 import Link from 'next/link'
 import { KeyboardEvent, useState } from 'react'
-import { firstLevelMenu } from '@/helpers/helpers'
 import { motion } from 'framer-motion'
+import { firstLevelMenu } from '@/helpers/helpers'
 
 export const Menu = ({ menu, firstCategory }: MenuProps) => {
 	const path = usePathname()
+
 	const [menuState, setMenuState] = useState<MenuItem[]>(menu)
 
 	const variants = {
@@ -30,9 +31,10 @@ export const Menu = ({ menu, firstCategory }: MenuProps) => {
 	const variantsChildren = {
 		visible: {
 			opacity: 1,
-			height: 32
+			height: 'auto',
+			marginBottom: 10
 		},
-		hidden: { opacity: 0, height: 0 }
+		hidden: { opacity: 0, height: 0, marginBottom: 0 }
 	}
 
 	const setMenu = (newMenu: MenuItem[]) => {
@@ -60,21 +62,18 @@ export const Menu = ({ menu, firstCategory }: MenuProps) => {
 	const buildFirstLevel = () => {
 		return (
 			<>
-				{firstLevelMenu.map(m => (
-					<div key={m.route}>
-						<Link href={`/${m.route}`}>
-							<div
-								className={cn(styles.firstLevel, {
-									[styles.firstLevelActive]: m.id === firstCategory
-								})}
-							>
-								{m.icon}
-								<span>{m.name}</span>
-							</div>
-						</Link>
-						{m.id === firstCategory && buildSecondLevel(m)}
+				<div key={firstLevelMenu[0].route}>
+					<div
+						className={cn(styles.firstLevel, {
+							[styles.firstLevelActive]: firstCategory === 0
+						})}
+					>
+						{firstLevelMenu[0].icon}
+						<span>{firstLevelMenu[0].name}</span>
 					</div>
-				))}
+					{firstLevelMenu[0].id === firstCategory &&
+						buildSecondLevel(firstLevelMenu[0])}
+				</div>
 			</>
 		)
 	}
