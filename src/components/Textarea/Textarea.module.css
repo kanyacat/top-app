@@ -13,12 +13,12 @@
 	outline-color: var(--primary);
 	background: var(--white);
 
-	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+
+	font-family: var(--font-family);
 
 	font-size: 16px;
 	line-height: 22px;
-
-	font-family: var(--font-family);
 }
 
 .textarea::placeholder {
@@ -31,7 +31,8 @@
 
 .errorMessage {
 	position: absolute;
-	color: var(--red);
 	bottom: -15px;
 	left: 2px;
+
+	color: var(--red);
 }

@@ -3,6 +3,7 @@
 	grid-template-columns:
 		[start] 70px [logoend] 30px [titlestart] calc(50% - 100px)
 		[middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
+
 	margin-top: 30px;
 
 	padding: 30px;
@@ -32,6 +33,7 @@
 .price,
 .priceTitle {
 	grid-column: pricestart / priceend;
+
 	white-space: nowrap;
 }
 
@@ -58,6 +60,7 @@
 .rate,
 .rateTitle {
 	grid-column: ratestart / end;
+
 	white-space: nowrap;
 }
 
@@ -97,12 +100,13 @@
 
 .characteristics {
 	display: grid;
-	grid-template-columns: auto 1fr auto;
-	padding-right: 60px;
 	align-items: baseline;
-	gap: 10px;
+
+	padding-right: 60px;
 
 	font-size: 16px;
+	grid-template-columns: auto 1fr auto;
+	gap: 10px;
 }
 
 .characteristicsName {
@@ -110,8 +114,9 @@
 }
 
 .characteristicsDots {
-	border-bottom: 1px dashed var(--gray-light);
 	margin-bottom: 5px;
+
+	border-bottom: 1px dashed var(--gray-light);
 }
 
 .characteristicsValue {
@@ -120,25 +125,28 @@
 
 .advBlock {
 	grid-column: middle / end;
+
 	font-size: 16px;
 }
 
 .advTitle {
-	font-weight: 700;
 	margin-bottom: 5px;
+
+	font-weight: 700;
 }
 
 .advantages,
 .disadvantages {
+	padding-left: 15px;
+
 	border-left: 3px solid;
 	border-radius: 3px;
-
-	padding-left: 15px;
 }
 
 .advantages {
-	border-color: #1dc37e;
 	margin-bottom: 20px;
+
+	border-color: #1dc37e;
 }
 
 .disadvantages {
@@ -151,10 +159,11 @@
 
 .reviews {
 	overflow: hidden;
+
 	padding: 30px;
 }
 
-@media screen and (max-width: 1320px) {
+@media screen and (width <= 1320px) {
 	.product {
 		grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
 
@@ -177,6 +186,7 @@
 
 	.title {
 		grid-area: title;
+
 		margin-bottom: 20px;
 	}
 
@@ -218,6 +228,7 @@
 
 	.feature {
 		grid-area: feature;
+
 		margin-bottom: 20px;
 	}
 
@@ -234,7 +245,7 @@
 	}
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (width <= 930px) {
 	.product {
 		grid-template-columns: 70px 30px 1fr;
 
@@ -263,7 +274,7 @@
 	}
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (width <= 480px) {
 	.product {
 		grid-template-columns: 1fr;
 

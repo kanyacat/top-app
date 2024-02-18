@@ -1,15 +1,16 @@
 .firstLevel {
 	display: grid;
-	grid-template-columns: 24px 1fr;
-	gap: 20px;
 	align-items: center;
+
 	margin-top: 10px;
+
+	cursor: pointer;
 
 	font-size: 18px;
 	font-weight: 500;
 	line-height: normal;
-
-	cursor: pointer;
+	grid-template-columns: 24px 1fr;
+	gap: 20px;
 }
 
 .firstLevelActive,
@@ -29,6 +30,7 @@
 	text-transform: uppercase;
 
 	color: var(--gray-dark);
+
 	font-size: 12px;
 	font-weight: 300;
 }
@@ -44,20 +46,22 @@
 
 .secondLevelBlock {
 	overflow: hidden;
+
 	margin-top: 5px;
 }
 
 .thirdLevel {
-	cursor: pointer;
-
 	display: block;
 
-	color: var(--gray-dark);
-	font-size: 14px;
-	font-weight: 500;
+	cursor: pointer;
 	text-transform: none;
 
+	color: var(--gray-dark);
+
 	outline-offset: -1px;
+
+	font-size: 14px;
+	font-weight: 500;
 }
 
 .thirdLevelActive,

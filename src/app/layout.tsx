@@ -15,8 +15,7 @@ import { API } from '@/helpers/api'
 const font = Noto_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-	title: 'Top app',
-	description: 'помогите умоляю'
+	title: 'OWLtop'
 }
 
 export default async function RootLayout({
