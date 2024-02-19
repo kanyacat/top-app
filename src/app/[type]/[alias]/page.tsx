@@ -12,7 +12,7 @@ import { API } from '@/helpers/api'
 import Head from 'next/head'
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 
-export default async function Course({ params: any }) {
+export default async function Course({ params }) {
 	const { firstCategory, page, products }: CourseProps = await getData(params)
 
 	return (
