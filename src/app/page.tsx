@@ -43,7 +43,7 @@ export default async function Home() {
 					</Htag>
 					<ul className={styles.list}>
 						{text.map(t => (
-							<li className={styles.text}>
+							<li key={t} className={styles.text}>
 								<AdvantagesIcon className={styles.icon} /> {t}
 							</li>
 						))}

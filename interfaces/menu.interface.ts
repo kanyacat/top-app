@@ -1,6 +1,7 @@
 import { TopLevelCategory } from './page.interface'
 
 export interface MenuItem {
+	route: any
 	_id: IdItem
 	pages: PageItem[]
 	isOpened?: boolean

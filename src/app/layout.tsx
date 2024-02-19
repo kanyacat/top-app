@@ -1,4 +1,4 @@
-import type { GetStaticPropsContext, Metadata } from 'next'
+import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 import './globals.css'
 import styles from './Layout.module.css'
@@ -8,21 +8,24 @@ import { Sidebar } from '@/components/Sidebar/Sidebar'
 import axios from 'axios'
 import { MenuItem } from '../../interfaces/menu.interface'
 import { firstLevelMenu } from '@/helpers/helpers'
-import { ParsedUrlQuery } from 'querystring'
 import { notFound } from 'next/navigation'
 import { API } from '@/helpers/api'
 
 const font = Noto_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-	title: 'OWLtop'
+	title: 'OwlTop'
+	// openGraph: {
+	// 	url: process.env.NEXT_PUBLIC_DOMAIN,
+	// 	locale: 'ru_RU'
+	// }
 }
 
 export default async function RootLayout({
 	children
 }: {
 	children: React.ReactNode
-}): JSX.Element {
+}) {
 	const { menu, firstCategory } = await getMenu()
 
 	return (
@@ -49,15 +52,7 @@ export default async function RootLayout({
 	)
 }
 
-export async function getMenu(
-	params: GetStaticPropsContext<ParsedUrlQuery> | undefined
-) {
-	// let firstCategoryItem
-
-	// params !== undefined
-	// 	? (firstCategoryItem = firstLevelMenu.find(m => m.route === params.type))
-	// 	: (firstCategoryItem = 0)
-
+export async function getMenu() {
 	const firstCategory = 0
 
 	try {

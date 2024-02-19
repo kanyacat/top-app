@@ -18,6 +18,7 @@ import { ReviewForm } from '@/components/ReviewForm/ReviewForm'
 import { motion } from 'framer-motion'
 
 export const Product = motion(
+	// eslint-disable-next-line react/display-name
 	forwardRef(
 		(
 			{ product, className, ...props }: ProductProps,
@@ -149,3 +150,5 @@ export const Product = motion(
 		}
 	)
 )
+
+Product.displayName = 'Product'

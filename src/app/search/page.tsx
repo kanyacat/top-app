@@ -6,8 +6,8 @@ import { Ptag } from '@/components/Ptag/Ptag'
 import { Htag } from '@/components/Htag/Htag'
 import styles from './page.module.scss'
 
-const Page = props => {
-	const [searchParams, setSearchParams] = useSearchParams()
+const Page = () => {
+	const searchParams = useSearchParams()
 
 	return (
 		<div>
@@ -15,8 +15,8 @@ const Page = props => {
 				Ой! Ошибка!
 			</Htag>
 			<Ptag>
-				К сожалению, Ваши результаты по запросу {searchParams[1]} не были
-				встроены в API.
+				К сожалению, Ваши результаты по запросу {searchParams} не были встроены
+				в API.
 			</Ptag>
 		</div>
 	)

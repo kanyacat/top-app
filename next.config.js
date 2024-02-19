@@ -3,6 +3,9 @@ const nextConfig = {
 	images: {
 		domains: ['courses-top.ru']
 	},
+	experimental: {
+		missingSuspenseWithCSRBailout: false
+	},
 	webpack(config) {
 		config.module.rules.push({
 			loader: '@svgr/webpack',

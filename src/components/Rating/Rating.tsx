@@ -55,6 +55,7 @@ export const Rating = forwardRef(
 			const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
 				return (
 					<span
+						key={i}
 						className={cn(styles.star, {
 							[styles.filled]: i < currentRating,
 							[styles.editable]: isEditable
@@ -118,3 +119,5 @@ export const Rating = forwardRef(
 		)
 	}
 )
+
+Rating.displayName = 'Rating'
