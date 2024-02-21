@@ -53,7 +53,9 @@ const TopPageComponent = ({
 					sortedProducts.map(p => <Product layout key={p._id} product={p} />)}
 			</div>
 			<div className={styles.hhTitle}>
-				<Htag tag={'h2'}>Вакансии - {page.category}</Htag>
+				<Htag tag={'h2'} className={styles.vacancy}>
+					Вакансии - {page.category}
+				</Htag>
 				{products && (
 					<Tag color={'red'} size={'s'}>
 						hh.ru
@@ -63,7 +65,7 @@ const TopPageComponent = ({
 			{firstCategory === TopLevelCategory.Courses && page.hh && (
 				<HhData {...page.hh} />
 			)}
-			{page.advantages && page.advantages.length > 0 && (
+			{page.advantages && page.advantages.length > 1 && (
 				<div className={styles.advantages}>
 					<Htag tag={'h2'} className={styles.advantagesTitle}>
 						Преимущества

@@ -114,7 +114,9 @@ export const Product = motion(
 						</div>
 						<Divider className={cn(styles.hr, styles.hr2)} />
 						<div className={styles.actions}>
-							<Button appearance={'primary'}>Узнать подробнее</Button>
+							<Button appearance={'primary'} className={styles.btn}>
+								Узнать подробнее
+							</Button>
 							<Button
 								appearance={'ghost'}
 								arrow={isReviewOpened ? 'down' : 'right'}
