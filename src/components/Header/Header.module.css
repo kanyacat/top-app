@@ -23,9 +23,11 @@
 
 @media (width <= 765px) {
 	.header {
+		display: -ms-grid;
 		display: grid;
 
 		margin: 15px 15px 0;
+		-ms-grid-columns: 1fr 10px 40px;
 		grid-template-columns: 1fr 40px;
 		gap: 10px;
 	}

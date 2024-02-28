@@ -1,5 +1,10 @@
 .footer {
+	display: -ms-grid;
 	display: grid;
+
+	-webkit-box-align: center;
+
+	-ms-flex-align: center;
 
 	align-items: center;
 
@@ -10,6 +15,7 @@
 
 	font-size: 16px;
 	line-height: 20px;
+	-ms-grid-columns: 1fr 40px auto 40px auto;
 	grid-template-columns: 1fr auto auto;
 	gap: 10px 40px;
 }
@@ -20,6 +26,7 @@
 
 @media (width <= 765px) {
 	.footer {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 }

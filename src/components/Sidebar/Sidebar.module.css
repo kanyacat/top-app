@@ -1,5 +1,7 @@
 .sidebar {
+	display: -ms-grid;
 	display: grid;
+	-ms-flex-line-pack: start;
 	align-content: start;
 	gap: 20px;
 }

@@ -1,6 +1,8 @@
 .title,
 .hhTitle {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: auto 20px 1fr 20px auto;
 	grid-template-columns: auto 1fr auto;
 
 	place-items: baseline left;
@@ -10,6 +12,7 @@
 }
 
 .hhTitle {
+	-ms-grid-columns: auto 1fr;
 	grid-template-columns: auto 1fr;
 
 	margin-bottom: 24px;
@@ -63,6 +66,7 @@
 
 @media screen and (width <= 930px) {
 	.title {
+		-ms-grid-columns: auto 1fr;
 		grid-template-columns: auto 1fr;
 	}
 }

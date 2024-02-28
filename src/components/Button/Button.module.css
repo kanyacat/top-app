@@ -1,13 +1,25 @@
 .button {
 	display: inline-block;
 
+	-webkit-box-sizing: border-box;
+
 	box-sizing: border-box;
 
 	padding: 10px;
 
 	cursor: pointer;
 
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-webkit-transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+
+	-o-transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
 	text-align: center;
 
 	border: none;
@@ -33,6 +45,8 @@
 }
 
 .ghost svg {
+	-webkit-transition: fill 0.2s ease-in-out;
+	-o-transition: fill 0.2s ease-in-out;
 	transition: fill 0.2s ease-in-out;
 }
 
@@ -48,7 +62,15 @@
 }
 
 .down {
+	-webkit-transition: -webkit-transform 0.2s ease-in-out;
+	transition: -webkit-transform 0.2s ease-in-out;
+	-o-transition: transform 0.2s ease-in-out;
 	transition: transform 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		-webkit-transform 0.2s ease-in-out;
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
 

@@ -1,5 +1,10 @@
 .review {
+	display: -ms-grid;
 	display: grid;
+
+	-webkit-box-align: center;
+
+	-ms-flex-align: center;
 
 	align-items: center;
 
@@ -7,6 +12,7 @@
 
 	font-size: 14px;
 	line-height: 24px;
+	-ms-grid-columns: [start] 10px auto 10px 1fr 10px auto 10px auto 10px [end];
 	grid-template-columns: [start] auto 1fr auto auto [end];
 	gap: 10px;
 }
@@ -25,6 +31,7 @@
 
 @media screen and (width <= 640px) {
 	.review {
+		-ms-grid-columns: [start] 30px [titlestart] auto [dateend] 1fr [end];
 		grid-template-columns: [start] 30px [titlestart] auto [dateend] 1fr [end];
 	}
 

@@ -12,12 +12,30 @@
 	outline-color: var(--primary);
 	background: var(--white);
 
+	-webkit-box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+
 	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
 
 	font-family: var(--font-family);
 
 	font-size: 16px;
 	line-height: 22px;
+}
+
+.input::-webkit-input-placeholder {
+	color: var(--gray);
+}
+
+.input::-moz-placeholder {
+	color: var(--gray);
+}
+
+.input:-ms-input-placeholder {
+	color: var(--gray);
+}
+
+.input::-ms-input-placeholder {
+	color: var(--gray);
 }
 
 .input::placeholder {

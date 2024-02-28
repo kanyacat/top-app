@@ -13,12 +13,30 @@
 	outline-color: var(--primary);
 	background: var(--white);
 
+	-webkit-box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+
 	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
 
 	font-family: var(--font-family);
 
 	font-size: 16px;
 	line-height: 22px;
+}
+
+.textarea::-webkit-input-placeholder {
+	color: var(--gray);
+}
+
+.textarea::-moz-placeholder {
+	color: var(--gray);
+}
+
+.textarea:-ms-input-placeholder {
+	color: var(--gray);
+}
+
+.textarea::-ms-input-placeholder {
+	color: var(--gray);
 }
 
 .textarea::placeholder {

@@ -1,5 +1,7 @@
 .advantage {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 50px 40px 1fr;
 	grid-template-columns: 50px 1fr;
 	gap: 10px 40px;
 
@@ -17,6 +19,8 @@
 }
 
 .title {
+	-ms-flex-item-align: center;
+	-ms-grid-row-align: center;
 	align-self: center;
 
 	font-weight: 700;

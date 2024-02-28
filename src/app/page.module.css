@@ -25,9 +25,13 @@
 }
 
 .text {
+	display: -ms-grid;
 	display: grid;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 
 	margin-bottom: 10px;
+	-ms-grid-columns: 70px 1fr;
 	grid-template-columns: 70px 1fr;
 }
