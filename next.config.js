@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['courses-top.ru']
+		domains: [
+			'courses-top.ru',
+			'geekhacker.ru',
+			'old-images.hb.ru-msk.vkcs.cloud'
+		]
 	},
 	experimental: {
 		missingSuspenseWithCSRBailout: false

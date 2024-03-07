@@ -47,7 +47,7 @@ export const Product = motion(
 					<Card className={cn(className, styles.product, {})} {...props}>
 						<div className={styles.logo}>
 							<Image
-								src={'https://courses-top.ru' + product.image}
+								src={product.image}
 								alt={product.title}
 								width={70}
 								height={70}
